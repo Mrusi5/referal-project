@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Авторизация</title>
+
+    <style>
+      .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .popup {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form method="POST">
+      {% csrf_token %}
+      <div style="text-align: center">
+        <label for="phone_number">Номер телефона:</label>
+        <br />
+        <br />
+        <input
+          type="text"
+          name="phone_number"
+          class="form-control"
+          id="phone_number"
+          placeholder="Введите номер"
+        />
+        <br />
+        <br />
+        <button id="showPopupButton">Отправить код</button>
+      </div>
+
+      <div class="popup-overlay" id="popupOverlay">
+        <div class="popup">
+          <label for="code">Код авторизации:</label>
+          <input type="text" id="code" placeholder="Введите код" />
+
+          <button id="submitCodeButton">Отправить</button>
+        </div>
+      </div>
+    </form>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div style="text-align: center">
+      <a href="rm">ReadMe</a>
+    </div>
+
+    <script>
+      const showPopupButton = document.getElementById("showPopupButton");
+      const popupOverlay = document.getElementById("popupOverlay");
+      const submitCodeButton = document.getElementById("submitCodeButton");
+
+      showPopupButton.addEventListener("click", function () {
+        popupOverlay.style.display = "flex";
+      });
+
+      submitCodeButton.addEventListener("click", function () {
+        // Обработка введенного кода авторизации
+        const code = document.getElementById("code").value;
+        alert("Код авторизации: " + code);
+        popupOverlay.style.display = "none";
+      });
+    </script>
+  </body>
+</html>

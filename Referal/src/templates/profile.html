@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Номер пользователя и инвайт код</title>
+  </head>
+  <body>
+    <div style="text-align: center">
+      <h1>Номер пользователя: {{ request.session.phone_number }}</h1>
+    </div>
+    <!-- Форма для ввода инвайт кода -->
+    <form method="POST">
+      <div style="text-align: center">
+        <label for="invite_code">Инвайт код:</label>
+        <input
+          type="text"
+          name="invite_code"
+          class="form-control"
+          id="invite_code"
+        />
+        <button type="submit">Отправить</button>
+      </div>
+    </form>
+    <h1>Приглашенные пользователи</h1>
+    {% for i in inv %}
+    <li>{{ i.phone_number }}</li>
+    {% empty %}
+    <li>Нет пользователей с данным инвайт кодом.</li>
+    {% endfor %}
+  </body>
+</html>
